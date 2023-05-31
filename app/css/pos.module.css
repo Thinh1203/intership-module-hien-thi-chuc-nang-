@@ -1,0 +1,16 @@
+.container_main_content_wrapper {
+    height: calc(100vh - 58px);
+}
+
+.container_main_content {
+    position: relative;
+    height: 100%;
+}
+
+.footer_main_content {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    margin: 0;
+}
+
