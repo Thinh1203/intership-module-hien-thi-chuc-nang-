@@ -1,0 +1,196 @@
+{
+    "benhnhans": [
+        {
+            "benhnhans_id": 1,
+            "benhnhans_mabenhnhan": "BN001",
+            "benhnhans_ten": "Nguyễn Văn A",
+            "benhnhans_mabhyt": "BHYT0097823392"
+        },
+        {
+            "benhnhans_id": 2,
+            "benhnhans_mabenhnhan": "BN002",
+            "benhnhans_ten": "Nguyễn Văn B",
+            "benhnhans_mabhyt": "BHYT0045263343"
+        },
+        {
+            "benhnhans_id": 3,
+            "benhnhans_mabenhnhan": "BN003",
+            "benhnhans_ten": "Nguyễn Văn C",
+            "benhnhans_mabhyt": "BHYT1097239084"
+        },
+        {
+            "benhnhans_id": 4,
+            "benhnhans_mabenhnhan": "BN004",
+            "benhnhans_ten": "Nguyễn Văn D",
+            "benhnhans_mabhyt": "BHYT1123839225"
+        },
+        {
+            "benhnhans_id": 5,
+            "benhnhans_mabenhnhan": "BN005",
+            "benhnhans_ten": "Nguyễn Văn E",
+            "benhnhans_mabhyt": "BHYT2097815322"
+        },
+        {
+            "benhnhans_id": 6,
+            "benhnhans_mabenhnhan": "BN006",
+            "benhnhans_ten": "Nguyễn Văn F",
+            "benhnhans_mabhyt": "BHYT2021156452"
+        },
+        {
+            "benhnhans_id": 7,
+            "benhnhans_mabenhnhan": "BN007",
+            "benhnhans_ten": "Nguyễn Văn G",
+            "benhnhans_mabhyt": "BHYT1052339012"
+        },
+        {
+            "benhnhans_id": 8,
+            "benhnhans_mabenhnhan": "BN008",
+            "benhnhans_ten": "Nguyễn Văn H",
+            "benhnhans_mabhyt": "BHYT1297451628"
+        },
+        {
+            "benhnhans_id": 9,
+            "benhnhans_mabenhnhan": "BN009",
+            "benhnhans_ten": "Nguyễn Văn I",
+            "benhnhans_mabhyt": "BHYT1219304534"
+        },
+        {
+            "benhnhans_id": 10,
+            "benhnhans_mabenhnhan": "BN0010",
+            "benhnhans_ten": "Nguyễn Văn J",
+            "benhnhans_mabhyt": "BHYT2329047172"
+        },
+        {
+            "benhnhans_id": 11,
+            "benhnhans_mabenhnhan": "BN0011",
+            "benhnhans_ten": "Nguyễn Văn K",
+            "benhnhans_mabhyt": "BHYT2417825792"
+        },
+        {
+            "benhnhans_id": 12,
+            "benhnhans_mabenhnhan": "BN0012",
+            "benhnhans_ten": "Nguyễn Văn L",
+            "benhnhans_mabhyt": "BHYT1528233093"
+        },
+        {
+            "benhnhans_id": 13,
+            "benhnhans_mabenhnhan": "BN0013",
+            "benhnhans_ten": "Nguyễn Văn M",
+            "benhnhans_mabhyt": "BHYT1723464577"
+        },
+        {
+            "benhnhans_id": 14,
+            "benhnhans_mabenhnhan": "BN0014",
+            "benhnhans_ten": "Nguyễn Văn N",
+            "benhnhans_mabhyt": "BHYT2143253464"
+        },
+        {
+            "benhnhans_id": 15,
+            "benhnhans_mabenhnhan": "BN0015",
+            "benhnhans_ten": "Nguyễn Văn O",
+            "benhnhans_mabhyt": "BHYT1012353456"
+        },
+        {
+            "benhnhans_id": 16,
+            "benhnhans_mabenhnhan": "BN0016",
+            "benhnhans_ten": "Nguyễn Văn P",
+            "benhnhans_mabhyt": "BHYT2012343545"
+        },
+        {
+            "benhnhans_id": 17,
+            "benhnhans_mabenhnhan": "BN0017",
+            "benhnhans_ten": "Nguyễn Văn Q",
+            "benhnhans_mabhyt": "BHYT1228678323"
+        },
+        {
+            "benhnhans_id": 18,
+            "benhnhans_mabenhnhan": "BN0018",
+            "benhnhans_ten": "Nguyễn Văn R",
+            "benhnhans_mabhyt": "BHYT2431232132"
+        },
+        {
+            "benhnhans_id": 19,
+            "benhnhans_mabenhnhan": "BN0019",
+            "benhnhans_ten": "Nguyễn Văn S",
+            "benhnhans_mabhyt": "BHYT1423435346"
+        },
+        {
+            "benhnhans_id": 20,
+            "benhnhans_mabenhnhan": "BN0020",
+            "benhnhans_ten": "Nguyễn Văn T",
+            "benhnhans_mabhyt": "BHYT2143543546"
+        },
+        {
+            "benhnhans_id": 21,
+            "benhnhans_mabenhnhan": "BN0021",
+            "benhnhans_ten": "Nguyễn Văn U",
+            "benhnhans_mabhyt": "BHYT1256576892"
+        },
+        {
+            "benhnhans_id": 22,
+            "benhnhans_mabenhnhan": "BN0022",
+            "benhnhans_ten": "Nguyễn Văn V",
+            "benhnhans_mabhyt": "BHYT2212324354"
+        },
+        {
+            "benhnhans_id": 23,
+            "benhnhans_mabenhnhan": "BN0023",
+            "benhnhans_ten": "Nguyễn Văn W",
+            "benhnhans_mabhyt": "BHYT1632132456"
+        },
+        {
+            "benhnhans_id": 24,
+            "benhnhans_mabenhnhan": "BN0024",
+            "benhnhans_ten": "Nguyễn Văn Y",
+            "benhnhans_mabhyt": "BHYT1276867934"
+        },
+        {
+            "benhnhans_id": 25,
+            "benhnhans_mabenhnhan": "BN0025",
+            "benhnhans_ten": "Nguyễn Văn Z",
+            "benhnhans_mabhyt": "BHYT2144324356"
+        }
+    ],
+    "sanphams": [
+        {
+            "sanphams_id": 1,
+            "sanpham_ten": "Dây truyền dịch",
+            "sanphams_nongdohamluong": "",
+            "sanphams_donvi": "Bộ",
+            "sanphams_soluong": 100,
+            "sanphams_donggia": 6300
+        },
+        {
+            "sanphams_id": 2,
+            "sanpham_ten": "Paracetamol (Hapacol Caplet 500) 500mg",
+            "sanphams_nongdohamluong": "500mg",
+            "sanphams_donvi": "Viên",
+            "sanphams_soluong": 200,
+            "sanphams_donggia": 194
+        },
+        {
+            "sanphams_id": 3,
+            "sanpham_ten": "N-acetylcystein (ACECYST) 200mg",
+            "sanphams_nongdohamluong": "200mg",
+            "sanphams_donvi": "Viên",
+            "sanphams_soluong": 300,
+            "sanphams_donggia": 234
+        },
+        {
+            "sanphams_id": 4,
+            "sanpham_ten": "Kim luồng tĩnh mạch các số",
+            "sanphams_nongdohamluong": "",
+            "sanphams_donvi": "Cây",
+            "sanphams_soluong": 400,
+            "sanphams_donggia": 8400
+        },
+        {
+            "sanphams_id": 5,
+            "sanpham_ten": "Băng cá nhân [T.KHOA-22]",
+            "sanphams_nongdohamluong": "",
+            "sanphams_donvi": "Miếng",
+            "sanphams_soluong": 500,
+            "sanphams_donggia": 273
+        }
+    ]
+}

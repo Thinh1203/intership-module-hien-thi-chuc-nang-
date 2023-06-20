@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@algolia/autocomplete-js": "^1.9.3",
+    "@algolia/autocomplete-theme-classic": "^1.9.3",
     "@emotion/react": "^11.11.0",
     "@emotion/server": "^11.11.0",
-    "@mantine/carousel": "^6.0.11",
+    "@mantine/carousel": "6.0.11",
     "@mantine/core": "^6.0.11",
     "@mantine/dates": "^6.0.11",
     "@mantine/dropzone": "^6.0.11",
@@ -31,15 +33,19 @@
     "@types/node": "20.2.5",
     "@types/react": "18.2.7",
     "@types/react-dom": "18.2.4",
+    "algoliasearch": "^4.17.2",
     "autoprefixer": "10.4.14",
     "dayjs": "^1.11.7",
     "embla-carousel-react": "^8.0.0-rc05",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.4",
+    "json-server": "^0.17.3",
     "next": "13.4.4",
     "postcss": "8.4.24",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-split": "^2.0.14",
+    "swr": "^2.1.5",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4"
   }
