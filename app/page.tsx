@@ -19,7 +19,7 @@ import {
   IconDevices, IconArrowBadgeRightFilled, IconHelp, IconChevronDown
 } from '@tabler/icons-react';
 import dynamic from 'next/dynamic';
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import { useDisclosure } from '@mantine/hooks';
 import { notifications } from '@mantine/notifications';
 import '@algolia/autocomplete-theme-classic';
@@ -112,11 +112,19 @@ const Home = () => {
   const { productData, productIsError, productIsLoading } = product();
   const { userData, userIsError, userIsLoading } = user();
   const [active, setActive] = useState(0);
+  const [idPatient, setIdPatient] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loadingSideBar, setLoadingSideBar] = useState(false);
+  const [loadingMain, setLoadingMain] = useState(false);
   const usersPerPage = 15;
   const totalPages = Math.ceil(userData?.length / usersPerPage);
   const handlePageChange = (page: number) => {
+    if (page === currentPage) return;
+    setLoadingSideBar(true);
     setCurrentPage(page);
+    setTimeout(() => {
+      setLoadingSideBar(false);
+    }, 1000);
   };
   const startIndex = (currentPage - 1) * usersPerPage;
   const endIndex = startIndex + usersPerPage;
@@ -188,6 +196,13 @@ const Home = () => {
         }
       ]);
     }
+    if (patient.benhnhans_id !== idPatient) {
+      setLoadingMain(true);
+      setIdPatient(patient.benhnhans_id);
+      setTimeout(() => {
+        setLoadingMain(false);
+      }, 500);
+    }
     return setActive(patient.benhnhans_id);
   }
 
@@ -197,7 +212,9 @@ const Home = () => {
       <tr
         key={index}
         style={{ border: 'solid 2px black', cursor: 'pointer' }}
-        onClick={() => prescription(e)}
+        onClick={() => {
+          prescription(e);
+        }}
         className={
           selectedPatient.some(a => a.id === e.benhnhans_id && a.DonThuoc.length > 0)
             ? 'bg-green-500 text-white hover:text-black'
@@ -216,8 +233,8 @@ const Home = () => {
 
   return (
     (userIsLoading) ? (
-      <div>
-        <Loader style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', margin: 'auto' }} />
+      <div className='loader-page'>
+        <Loader />
       </div>
     ) : (
       <Box>
@@ -246,7 +263,7 @@ const Home = () => {
                     },
                     templates: {
                       item({ item }: { item: any, components: any }) {
-                        return <ProductItem hit={item} onClickAddPills={addPills} />;
+                        return <ProductItem hit={item}  />;
                       },
                     },
                   },
@@ -264,7 +281,17 @@ const Home = () => {
                             <Text>
                               Đơn thuốc
                             </Text>
-                            <Text mt={0} onClick={(a) => { a.stopPropagation(); setActive(e.id); }} color='dark'>
+                            <Text mt={0} onClick={(a) => {
+                              a.stopPropagation();
+                              setActive(e.id);
+                              if (e.id !== idPatient) {
+                                setLoadingMain(true);
+                                setIdPatient(e.id);
+                                setTimeout(() => {
+                                  setLoadingMain(false);
+                                }, 500);
+                              }
+                            }} color='dark'>
                               {e?.MSBN}
                             </Text>
                           </Carousel.Slide>
@@ -320,95 +347,115 @@ const Home = () => {
 
         <Split className="split">
           <div style={{ minWidth: '280px', maxWidth: '380px', height: 'calc(100vh - 58px)', position: 'relative' }}>
-            <Table horizontalSpacing="sm" fontSize="md" style={{ border: 'solid 2px black' }} highlightOnHover withBorder withColumnBorders bg={'blue.2'} >
-              <thead>
-                <tr style={{ border: '2px solid black' }}>
-                  <th style={{ border: 'solid 2px black' }}>Mã số bệnh nhân</th>
-                  <th>Tên bệnh nhân</th>
-                </tr>
-              </thead>
-              <tbody >
-                {renderTableRows()}
-              </tbody>
-            </Table>
-            <Pagination className='absolute bottom-3' total={totalPages} boundaries={3} defaultValue={currentPage} onChange={handlePageChange} />
+            {
+              loadingSideBar ? (
+                <div className="loader-sidebar">
+                  <Loader size="lg" m={'auto'} />
+                </div>
+
+              ) : (
+                <>
+                  <Table horizontalSpacing="sm" fontSize="md" style={{ border: 'solid 2px black' }} highlightOnHover withBorder withColumnBorders bg={'blue.2'} >
+                    <thead>
+                      <tr style={{ border: '2px solid black' }}>
+                        <th style={{ border: 'solid 2px black' }}>Mã số bệnh nhân</th>
+                        <th>Tên bệnh nhân</th>
+                      </tr>
+                    </thead>
+                    <tbody >
+                      {renderTableRows()}
+                    </tbody>
+                  </Table>
+                  <Pagination className='absolute bottom-3' total={totalPages} boundaries={3} defaultValue={currentPage} onChange={handlePageChange} />
+                </>
+              )}
           </div>
           <div style={{ minWidth: 800, position: 'relative', height: 'calc(100vh - 58px)' }}>
-            <ScrollArea style={{ height: 'calc(100vh - 220px)', width: '100%' }} >
-              {
-                selectedPatient?.length > 1 && selectedPatient?.map(e => {
-                  return (active === e.id && (
-                    <React.Fragment key={e.id}>
-                      <Group key={e.id} className='flex justify-around' bg={'blue.2'}>
-                        <Group><p>Mã số bệnh nhân:</p> <Text color='red'>{e?.MSBN}</Text> </Group>
-                        <Group><p>Tên bệnh nhân:</p> <Text color='green.6'>{e.tenBN}</Text></Group>
-                        <Group><p>Mã số BHYT:</p> <Text color='blue.6'>{e.maBHYT}</Text></Group>
-                      </Group>
+            {
+              loadingMain ? (
+                <div className="loader-sidebar">
+                  <Loader size="lg" m={'auto'} />
+                </div>
+              ) : (
+                <>
+                  <ScrollArea style={{ height: 'calc(100vh - 220px)', width: '100%' }} >
+                    {
+                      selectedPatient?.length > 1 && selectedPatient?.map(e => {
+                        return (active === e.id && (
+                          <React.Fragment key={e.id}>
+                            <Group key={e.id} className='flex justify-around' bg={'blue.2'}>
+                              <Group><p>Mã số bệnh nhân:</p> <Text color='red'>{e?.MSBN}</Text> </Group>
+                              <Group><p>Tên bệnh nhân:</p> <Text color='green.6'>{e.tenBN}</Text></Group>
+                              <Group><p>Mã số BHYT:</p> <Text color='blue.6'>{e.maBHYT}</Text></Group>
+                            </Group>
 
-                      <Table withBorder withColumnBorders>
-                        {
-                          (e?.DonThuoc.length > 0 && e?.id !== 0) &&
-                          (
-                            <thead>
-                              <tr>
-                                <th>Tên</th>
-                                <th>Diễn giải</th>
-                                <th>Nồng độ hàm lượng</th>
-                                <th>Đơn vị tính</th>
-                                <th>Số lượng</th>
-                                <th>Đơn giá</th>
-                                <th>Thành tiền</th>
-                              </tr>
-                            </thead>
-                          )
-                        }
-                        <tbody>
-                          {
-                            (e?.id !== 0 && e?.DonThuoc.map((element: any, index) => (
-                              <tr key={index}>
-                                <td>{element.sanPham_ten}</td>
-                                <td>
-                                  <TextInput
-                                    placeholder="Ghi chú ..."
-                                    label=""
-                                    withAsterisk
-                                  />
-                                </td>
-                                <td>{element.sanPham_hamLuong}</td>
-                                <td>{element.sanPham_donViTinh}</td>
-                                <td>
-                                  <NumberInput style={{ width: 80 }} min={1} max={100} value={element.soLuong} onChange={(productNumber: number) => {
-                                    const updatedSelectedPatient = [...selectedPatient];
-                                    const patientIndex = updatedSelectedPatient.findIndex((patient: any) => patient.id === e.id);
+                            <Table withBorder withColumnBorders>
+                              {
+                                (e?.DonThuoc.length > 0 && e?.id !== 0) &&
+                                (
+                                  <thead>
+                                    <tr>
+                                      <th>Tên</th>
+                                      <th>Diễn giải</th>
+                                      <th>Nồng độ hàm lượng</th>
+                                      <th>Đơn vị tính</th>
+                                      <th>Số lượng</th>
+                                      <th>Đơn giá</th>
+                                      <th>Thành tiền</th>
+                                    </tr>
+                                  </thead>
+                                )
+                              }
+                              <tbody>
+                                {
+                                  (e?.id !== 0 && e?.DonThuoc.map((element: any, index) => (
+                                    <tr key={index}>
+                                      <td>{element.sanPham_ten}</td>
+                                      <td>
+                                        <TextInput
+                                          placeholder="Ghi chú ..."
+                                          label=""
+                                          withAsterisk
+                                        />
+                                      </td>
+                                      <td>{element.sanPham_hamLuong}</td>
+                                      <td>{element.sanPham_donViTinh}</td>
+                                      <td>
+                                        <NumberInput style={{ width: 80 }} min={1} max={100} value={element.soLuong} onChange={(productNumber: number) => {
+                                          const updatedSelectedPatient = [...selectedPatient];
+                                          const patientIndex = updatedSelectedPatient.findIndex((patient: any) => patient.id === e.id);
 
-                                    if (patientIndex !== -1) {
-                                      const donThuoc = updatedSelectedPatient[patientIndex].DonThuoc;
-                                      const donThuocIndex = donThuoc.findIndex((item: any) => item.sanPham_id === element.sanPham_id);
+                                          if (patientIndex !== -1) {
+                                            const donThuoc = updatedSelectedPatient[patientIndex].DonThuoc;
+                                            const donThuocIndex = donThuoc.findIndex((item: any) => item.sanPham_id === element.sanPham_id);
 
-                                      if (donThuocIndex !== -1) {
-                                        donThuoc[donThuocIndex].soLuong = productNumber;
-                                      }
-                                    }
+                                            if (donThuocIndex !== -1) {
+                                              donThuoc[donThuocIndex].soLuong = productNumber;
+                                            }
+                                          }
 
-                                    setSelectedPatient(updatedSelectedPatient);
-                                  }}
-                                  />
-                                </td>
-                                <td>{(element.gia).toLocaleString()}</td>
-                                <td>{(element.soLuong * element.gia).toLocaleString()}</td>
-                                <td style={{ display: 'none' }}>{totalPrice += element.soLuong * element.gia}</td>
-                              </tr>
-                            ))
-                            )
-                          }
-                        </tbody>
-                      </Table>
-                    </ React.Fragment>
-                  ))
-                })
-              }
-            </ScrollArea>
-            <FooterApp />
+                                          setSelectedPatient(updatedSelectedPatient);
+                                        }}
+                                        />
+                                      </td>
+                                      <td>{(element.gia).toLocaleString()}</td>
+                                      <td>{(element.soLuong * element.gia).toLocaleString()}</td>
+                                      <td style={{ display: 'none' }}>{totalPrice += element.soLuong * element.gia}</td>
+                                    </tr>
+                                  ))
+                                  )
+                                }
+                              </tbody>
+                            </Table>
+                          </ React.Fragment>
+                        ))
+                      })
+                    }
+                  </ScrollArea>
+                  <FooterApp />
+                </>
+              )
+            }
           </div>
           <div style={{ minWidth: '300px', maxWidth: '400px', height: 'calc(100vh - 58px)', position: 'relative' }}>
             <Modal size='lg' opened={addCustomer} onClose={handlerAddCustomer.close} title={<p className='text-md font-semibold'>Thêm mới khách hàng</p>}>
@@ -556,7 +603,7 @@ const Home = () => {
               </Group>
             </div>
           </div>
-        </Split>
+        </Split >
 
       </Box >
     )
